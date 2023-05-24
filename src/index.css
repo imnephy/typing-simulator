@@ -2,3 +2,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary: #bc4123;
+  --secondary: #2b3452;
+}
+
+@layer components {
+  #root {
+    @apply font-app flex flex-col min-h-screen h-screen;
+  }
+
+  header nav a {
+    @apply p-[6px] rounded-[4px] hover:text-white;
+  }
+
+  [aria-current='page'] {
+    @apply bg-[var(--primary)];
+  }
+}

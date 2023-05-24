@@ -1,4 +1,5 @@
 import { useAuth, IAuthContextValue } from '@/contexts/AuthContext';
+import AuthLayout from '@/layouts/AuthLayout';
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Button, Card, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
@@ -46,7 +47,7 @@ const Signup = () => {
     setLoading(false);
   };
   return (
-    <>
+    <AuthLayout>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
@@ -64,7 +65,7 @@ const Signup = () => {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" required ref={passwordConfirmRef} />
             </Form.Group>
-            <Button disabled={loading} type="submit" className="w-100 mt-3">
+            <Button disabled={loading} type="submit" className="w-100 mt-3 bg-blue-600">
               Sign Up
             </Button>
           </Form>
@@ -73,7 +74,7 @@ const Signup = () => {
       <div className="w-100 text-center mt-2">
         Already have an account? <Link to="/login">Log in</Link>
       </div>
-    </>
+    </AuthLayout>
   );
 };
 

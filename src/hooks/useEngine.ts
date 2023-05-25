@@ -9,7 +9,7 @@ import { setNewRecord } from '@/features/leaderboard/sessionTopSlice';
 
 export type PhaseState = 'start' | 'run' | 'finish';
 
-const COUNTDOWN_SECONDS = 5;
+const COUNTDOWN_SECONDS = 60;
 
 const useEngine = () => {
   const sessionTop = useSelector((state: RootState) => state.sessionTop.value);

@@ -10,12 +10,15 @@ import PlaygroundWrapper from '@/components/playground/wrappers/PlaygroundWrappe
 import Spiner from '@/components/playground/Spiner';
 
 const Playground = () => {
-  const { phase, currentText, isLoading, timeLeft, typed, errors, totalTyped, restart } =
+  const { phase, currentText, isLoading, timeLeft, typed, errors, totalTyped, restart, pb } =
     useEngine();
   const isFinish = phase === 'finish';
   return (
-    <PlaygroundWrapper>
-      <div className="flex flex-col justify-center items-center">
+    <PlaygroundWrapper isLoading={isLoading}>
+      <div className="flex flex-col justify-center items-center relative">
+        {phase === 'start' && !isLoading && (
+          <div className="animate-pulse absolute top-0">Start typing to begin!</div>
+        )}
         {isLoading && <Spiner />}
         {!isFinish && !isLoading && (
           <>
@@ -33,6 +36,7 @@ const Playground = () => {
           errors={errors}
           accuracy={calculateAccuracyPercentage(errors, totalTyped)}
           total={totalTyped}
+          pb={pb}
         />
       </div>
     </PlaygroundWrapper>

@@ -1,8 +1,19 @@
 import { FC, PropsWithChildren } from 'react';
 
-const PlaygroundWrapper: FC<PropsWithChildren> = ({ children }) => {
+interface PlaygroundWrapperProps {
+  isLoading: boolean;
+}
+
+const PlaygroundWrapper: FC<PropsWithChildren<PlaygroundWrapperProps>> = ({
+  children,
+  isLoading,
+}) => {
   return (
-    <div className="bg-yellow-500 px-5 bg-white-500 max-w-screen-2xl w-full h-full flex justify-center items-center">
+    <div
+      className={`px-5 mx-5 max-w-screen-2xl p-3 rounded-xl flex justify-center items-center ${
+        !isLoading ? 'bg-white' : ''
+      }`}
+    >
       {children}
     </div>
   );

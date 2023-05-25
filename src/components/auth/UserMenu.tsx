@@ -44,6 +44,7 @@ const UserMenu = () => {
           cursor-pointer
           hover:shadow-md
           transition
+          hover:bg-[var(--primary)]
           "
         >
           <AiOutlineMenu />

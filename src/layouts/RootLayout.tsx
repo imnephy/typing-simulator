@@ -8,7 +8,9 @@ const RootLayout = () => {
         <Navbar />
       </header>
       <main className="flex-grow bg-red-500 flex flex-col justify-center items-center">
-        <Outlet />
+        <div className="max-w-screen-2xl">
+          <Outlet />
+        </div>
       </main>
       <footer className="px-5 bg-[var(--secondary)] flex justify-center">
         <div>

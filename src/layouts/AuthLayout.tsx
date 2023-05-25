@@ -2,16 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { Container } from 'react-bootstrap';
 
 const AuthLayout: React.FC<PropsWithChildren> = ({ children }) => {
-  return (
-    <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: '100vh' }}
-    >
-      <div className="w-100" style={{ maxWidth: '400px' }}>
-        {children}
-      </div>
-    </Container>
-  );
+  return <Container className="min-w-[35vw]">{children}</Container>;
 };
 
 export default AuthLayout;

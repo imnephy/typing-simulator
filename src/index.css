@@ -21,3 +21,29 @@
     @apply bg-[var(--primary)];
   }
 }
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin-delay {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-delay {
+  animation: spin-delay 2s ease-in-out;
+  animation-delay: 3s;
+}

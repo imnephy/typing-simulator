@@ -1,5 +1,5 @@
 # touch-typing-simulator
-# deploy: [deploy-url](https://develop--starlit-cactus-0857c3.netlify.app/)
+# deploy: [touch-typing-simulator.netlify.app](https://touch-typing-simulator.netlify.app/)
 # Usage:
 1. git clone https://github.com/imnephy/typing-simulator.git
 2. npm i

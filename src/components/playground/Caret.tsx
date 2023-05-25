@@ -6,8 +6,6 @@ interface CaretProps {
 
 const Caret: FC<CaretProps> = ({ char }) => {
   const isSpace = char === ' ';
-  console.log(isSpace);
-
   return (
     <span className={`inline-block bg-blue-500 ${isSpace ? 'w-2 h-7' : ' w-fit'}`}>{char}</span>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Card, Form, Button, Alert } from 'react-bootstrap';
 import { IAuthContextValue, useAuth } from '@/contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,16 +7,10 @@ import AuthLayout from '@/layouts/AuthLayout';
 const Login = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const { signIn, currentUser } = useAuth() as IAuthContextValue;
+  const { signIn } = useAuth() as IAuthContextValue;
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (currentUser) {
-      navigate('/playground');
-    }
-  }, [currentUser, navigate]);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();

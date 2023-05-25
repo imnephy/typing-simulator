@@ -1,6 +1,6 @@
 import { useAuth, IAuthContextValue } from '@/contexts/AuthContext';
 import AuthLayout from '@/layouts/AuthLayout';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Alert, Button, Card, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -8,16 +8,10 @@ const Signup = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
-  const { signup, currentUser } = useAuth() as IAuthContextValue;
+  const { signup } = useAuth() as IAuthContextValue;
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (currentUser) {
-      navigate('/playground');
-    }
-  }, [currentUser, navigate]);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();

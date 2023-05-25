@@ -8,24 +8,6 @@ interface MenuItemProps {
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({ onClick, label, link, className }) => {
-  if (label === 'Logout') {
-    return (
-      <div
-        onClick={onClick}
-        className={`
-          ${className} 
-          px-2
-          py-3
-          hover:bg-[var(--primary)]
-          transition
-          font-semibold
-          rounded-none
-        `}
-      >
-        {label}
-      </div>
-    );
-  }
   return (
     <NavLink
       to={link}

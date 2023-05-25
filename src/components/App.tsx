@@ -14,6 +14,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import PrivateRoute from './auth/PrivateRoute';
+import PrivateLoginRoute from './auth/PrivateLoginRoute';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,8 +31,22 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
+      <Route
+        path="/signup"
+        element={
+          <PrivateLoginRoute>
+            <Signup />
+          </PrivateLoginRoute>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <PrivateLoginRoute>
+            <Login />
+          </PrivateLoginRoute>
+        }
+      />
     </Route>
   )
 );

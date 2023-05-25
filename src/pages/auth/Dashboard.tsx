@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Alert, Button, Card } from 'react-bootstrap';
 import { IAuthContextValue, useAuth } from '@/contexts/AuthContext';
 import { User } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
 import AuthLayout from '@/layouts/AuthLayout';
 
 export default function Dashboard() {
   const [error, setError] = useState('');
   const { currentUser, logout } = useAuth() as IAuthContextValue;
-  const navigate = useNavigate();
   const handleLogout = async () => {
     setError('');
 
     try {
       await logout();
-      navigate('/login');
     } catch {
       setError('Failed to log out.');
     }

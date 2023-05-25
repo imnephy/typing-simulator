@@ -25,6 +25,10 @@ const UserMenu = () => {
     };
   }, []);
   // ------------------------
+  const handleLogout = async () => {
+    await logout();
+    toggleOpen();
+  };
   return (
     <div ref={dropdownRef} className="relative">
       <div className="flex flex-row items-center gap-3">
@@ -78,15 +82,20 @@ const UserMenu = () => {
               {currentUser && (
                 <>
                   <hr />
-                  <MenuItem
-                    className="text-red-500"
-                    link="login"
-                    onClick={() => {
-                      logout();
-                      toggleOpen();
-                    }}
-                    label="Logout"
-                  />
+                  <div
+                    onClick={handleLogout}
+                    className={`
+                      text-red-500
+                      px-2
+                      py-3
+                      hover:bg-[var(--primary)]
+                      transition
+                      font-semibold
+                      rounded-none
+                    `}
+                  >
+                    Log out
+                  </div>
                 </>
               )}
             </>

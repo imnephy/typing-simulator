@@ -14,7 +14,7 @@ const RootLayout = () => {
       </main>
       <footer className="px-5 bg-[var(--secondary)] flex justify-center">
         <div>
-          <a href="https://github.com/imnephy/touch-typing-simulator">
+          <a href="https://github.com/imnephy/typing-simulator">
             <GitHub className="scale-50" />
           </a>
         </div>

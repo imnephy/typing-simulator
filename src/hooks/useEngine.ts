@@ -1,19 +1,19 @@
 import { useCallback, useEffect, useState } from 'react';
-import useText from './useText';
-import useCountdownTimer from './useCountdownTimer';
-import useTypings from './useTypings';
-import { calculateAccuracyPercentage, countErrors } from '@/utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
 import { setNewRecord } from '@/features/leaderboard/sessionTopSlice';
+import { calculateAccuracyPercentage, countErrors } from '@/utils/helpers';
+import useText from './useText';
+import useCountdownTimer from './useCountdownTimer';
+import useTypings from './useTypings';
 
 export type PhaseState = 'start' | 'run' | 'finish';
 
 const COUNTDOWN_SECONDS = 60;
 
 const useEngine = () => {
-  const sessionTop = useSelector((state: RootState) => state.sessionTop.value);
   const dispatch = useDispatch();
+  const sessionTop = useSelector((state: RootState) => state.sessionTop.value);
 
   const [phase, setPhase] = useState<PhaseState>('start');
   const { currentText, updateText, fetchTextFromApi, isLoading } = useText();
@@ -21,7 +21,6 @@ const useEngine = () => {
   const { typed, cursor, clearTyped, resetTotalTyped, totalTyped } = useTypings(phase !== 'finish');
 
   const [errors, setErrors] = useState(0);
-
   const [pb, setPb] = useState('');
 
   const isStarting = phase === 'start' && cursor > 0;
@@ -35,21 +34,18 @@ const useEngine = () => {
   const sumRecord = useCallback(() => {
     const accuracy = calculateAccuracyPercentage(errors, totalTyped);
     const summaryCount = Math.floor(totalTyped * (100 - (errors * 100) / totalTyped));
+
     if (sessionTop.summaryCount < summaryCount) {
-      dispatch(setNewRecord({ accuracy: accuracy, errors, totalTyped, summaryCount }));
+      dispatch(setNewRecord({ accuracy, errors, totalTyped, summaryCount }));
     }
+
     const personalBest = localStorage.getItem('pb');
-    if (!personalBest) {
-      const scStr = JSON.stringify(summaryCount);
-      localStorage.setItem('pb', scStr);
-      setPb(scStr);
+
+    if (!personalBest || Number(personalBest) < summaryCount) {
+      localStorage.setItem('pb', String(summaryCount));
+      setPb(String(summaryCount));
     } else {
-      setPb(JSON.parse(personalBest));
-      if (Number(JSON.parse(personalBest)) < summaryCount) {
-        const scStr = JSON.stringify(summaryCount);
-        localStorage.setItem('pb', scStr);
-        setPb(scStr);
-      }
+      setPb(personalBest);
     }
   }, [errors, totalTyped, sessionTop.summaryCount, dispatch]);
 

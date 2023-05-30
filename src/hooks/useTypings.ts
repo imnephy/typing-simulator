@@ -3,10 +3,10 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 
 const useTypings = (enabled: boolean) => {
   const [cursor, setCursor] = useState(0);
-  const [typed, setTyped] = useState<string>('');
+  const [typed, setTyped] = useState('');
   const totalTyped = useRef(0);
 
-  const keydownHandler = useCallback(
+  const handleKeyDown = useCallback(
     ({ key, code }: KeyboardEvent) => {
       if (!enabled || !isKeyboardCodeAllowed(code)) {
         return;
@@ -39,11 +39,11 @@ const useTypings = (enabled: boolean) => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('keydown', keydownHandler);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', keydownHandler);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [keydownHandler]);
+  }, [handleKeyDown]);
 
   return {
     typed,
